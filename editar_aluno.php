@@ -20,7 +20,7 @@
           <ul class="nav navbar-nav">
             <li ><a href="./">Geral</a></li>
             <li class="active"><a href="cadastro_aluno.php">Cadastro de Aluno</a></li>
-            <li><a href="#contact">Cadastro de avaliação</a></li>
+            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -51,7 +51,8 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="cpf">CPF:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="cpf"  value="<?php echo ($rows['cpf']); ?>"  name="cpf">
+        <input type="text"   maxlength="18" onkeydown="javascript: fMasc( this, mCPF );" class="form-control" id="cpf"  value="<?php echo ($rows['cpf']); ?>"  name="cpf">
+ 
       </div>
     </div>
     <div class="form-group">
@@ -90,6 +91,30 @@
     </div><!-- /.container -->
 </section>
 
+<script>
+
+
+function fMasc(objeto,mascara) {
+obj=objeto
+masc=mascara
+setTimeout("fMascEx()",1)
+}
+
+function fMascEx() {
+obj.value=masc(obj.value)
+}
+
+function mCPF(cpf){
+cpf=cpf.replace(/\D/g,"")
+cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+return cpf
+}
+
+
+</script>
+
 <?php if(isset($_POST) and isset($_GET["save"])){
   
    
@@ -102,6 +127,9 @@
 
     
    $result = mysqli_query($conexao, $sql) or die(mysql_error());
+   $id_aluno = $_POST["id"];
+   echo("<script>alert('Registro Atualizado')</script>");
+   echo("<script>location.replace('http://localhost/imc/editar_aluno.php?id=$id_aluno')</script>");
 }
 ?>
 

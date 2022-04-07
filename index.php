@@ -20,7 +20,7 @@
           <ul class="nav navbar-nav">
 					<li class="active"><a href="./">Geral</a></li>
             <li><a href="cadastro_aluno.php">Cadastro de Aluno</a></li>
-            <li><a href="#contact">Cadastro de avaliação</a></li>
+          
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -29,8 +29,8 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Cadastro de alunos e avaliações IMC</h1>
+        
       </div>
 
 			<?php $listar_alunos_sql = "select * from alunos";
@@ -42,7 +42,7 @@
 						  
 								 
 				
-				 </div>
+			
 	<div class="panel panel-default">
 							<!-- Default panel contents -->
 							<div class="panel-heading"><h2>Listagem</h2></div>
@@ -51,8 +51,8 @@
 							<thead>
 									<tr>
 										<th>Nome</th>
-										<th>Idade</th>
-										<th>Ação</th>
+										<th class="text-center">Idade</th>
+										<th >Ação</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -60,16 +60,34 @@
              while(  $rows =  mysqli_fetch_assoc($result)){
                  ?>						
 									<tr>
-										<td><?php echo ($rows['nome']); ?></td>
-										<td><?php echo ($rows['idade']); ?></td>
-										<td> 
-											<a href="editar_aluno.php?id=<?php echo $rows['id']?>">
-												<ion-icon style="zoom:2" name="create"></ion-icon>
+										<td class="col-md-6"><?php echo ($rows['nome']); ?></td>
+										<td class="col-md-2 text-center"><?php echo ($rows['idade']); ?></td>
+										<td style=" display: flex;
+  justify-content: center;
+  align-items: center;"> 
+										
+									 
+											<a style="color: green !important; margin-right: 5px" href="cadastrar_avaliacao.php?id_aluno=<?php echo $rows['id']?>" >
+												<ion-icon style="zoom:1.2" name="list-outline"></ion-icon> <b>Avaliações</b> 
+											</a> 
+									 
+										 
+										<a style="color: # !important; margin-right: 5px" href="editar_aluno.php?id=<?php echo $rows['id']?>" >
+											<ion-icon style="zoom:1.2" name="create"></ion-icon> 	Editar Aluno
 											</a>
+									 
+									 		<a style="color: red !important; margin-right: 5px"  href="javascript:void(0)" onclick="deleteRow(<?php echo($rows['id']); ?>)">
+												<ion-icon  style="zoom:1.2" name="trash"></ion-icon> Excluir aluno
+												</a>
 
-											<a href="javascript:void(0)" onclick="deleteRow(<?php echo($rows['id']); ?>)">
-												<ion-icon  style="zoom:2" name="trash"></ion-icon>
-												</a>	
+										 
+										</div>
+											
+											
+											
+
+												
+												</div>
 										</td>
 												
 									</tr>
