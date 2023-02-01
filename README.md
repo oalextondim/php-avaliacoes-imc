@@ -1,2 +1,2 @@
 # avaliacaoes-imc
-cadastro de alunos e avaliações de imc
+Projeto básico de cadastro de alunos e avaliações de imc
